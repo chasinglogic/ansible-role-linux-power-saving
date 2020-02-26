@@ -1,0 +1,12 @@
+---
+galaxy_info:
+  role_name: linux_power_saving
+  author: Mathew Robinson
+  description: Set up linux power management for machines with batteries
+  license: BSD
+  min_ansible_version: 2.8
+  galaxy_tags:
+    - tlp
+    - power-saving
+    - laptop
+    - powertop
