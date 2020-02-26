@@ -1,2 +1,17 @@
 ---
-# tasks file for linux_power_saving
+
+- name: Check if machine has a battery
+  stat:
+    path: /sys/class/power_supply/BAT0
+  register: battery_sysfs
+
+- include_tasks: tlp.yml
+  when: battery_sysfs.stat.exists
+
+- name: Checking if machine has an Intel CPU
+  set_fact:
+    processors_single_string: "{{ ansible_processor | join(' ') }}"
+    has_intel_cpu: "'intel' in processors_single_string or 'Intel' in processors_single_string"
+
+- include_tasks: powertop.yml
+  when: battery_sysfs.stat.exists and has_intel_cpu

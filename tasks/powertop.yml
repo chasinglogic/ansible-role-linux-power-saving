@@ -1,0 +1,7 @@
+---
+
+- name: Install powertop
+  become: true
+  become_user: root
+  package:
+    name: powertop

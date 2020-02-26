@@ -1,0 +1,17 @@
+---
+
+- name: Install TLP
+  become: true
+  become_user: root
+  package:
+    name:
+      - tlp
+      - tlp-rdw
+
+- name: Enable and start TLP
+  become: true
+  become_user: root
+  systemd:
+    name: tlp
+    state: started
+    enabled: true
